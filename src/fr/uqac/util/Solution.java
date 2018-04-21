@@ -1,25 +1,29 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package fr.uqac.util;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
 /**
- *
- * @author Benjamin
+ * Classe de Solution
+ * 
+ * @author Julien CUSSET, Benjamin DAGOURET
  */
 public class Solution {
     public int makespan;
     public ArrayList<Integer> ordonnancement;
     
+    /**
+     * Constructeur
+     */
     public Solution() {
         this.ordonnancement = new ArrayList();
     }
     
+    /**
+     * Initialise aléatoirement l'ordonnancement de jobs
+     * 
+     * @param jobs Le nombre de jobs
+     */
     public void init(int jobs) {
         for (int i=0; i < jobs; i++) {
             this.ordonnancement.add(i);
@@ -28,6 +32,9 @@ public class Solution {
         Collections.shuffle(this.ordonnancement);
     }
     
+    /**
+     * Transforme une solution actuelle infaisable en une solution faisable
+     */
     public void validate() {
         ArrayList<Integer> jobsUtilise = new ArrayList();
         

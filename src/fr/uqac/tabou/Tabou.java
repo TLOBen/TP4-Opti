@@ -1,14 +1,25 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package fr.uqac.tabou;
 
 /**
- *
- * @author Benjamin
+ * Recherche tabou
+ * 
+ * @author Julien CUSSET, Benjamin DAGOURET
  */
 public class Tabou {
+    /**
+     * Constructeur
+     */
+    public Tabou() {
+        
+    }
     
+    /**
+     * Squelette de l'algorithme
+     */
+    public void rechercheTabou() {
+        System.out.println("Resultat recherche Tabou");
+        System.out.println("    Meilleure solution trouvée");
+        System.out.println("    " + "TODO");
+        System.out.println("    Makespan : " + "TODO");
+    }
 }

@@ -1,13 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package fr.uqac.util;
 
 /**
- *
- * @author Benjamin
+ * Classe contenant les infos de test
+ * 
+ * @author Julien CUSSET, Benjamin DAGOURET
  */
 public class Info {
     public int jobs;
@@ -15,6 +11,12 @@ public class Info {
     public int[][][] RDS;
     public int[][] processingTime;
     
+    /**
+     * Constructeur
+     * 
+     * @param jobs Le nombre de jobs
+     * @param machines Le nombre de machines
+     */
     public Info(int jobs, int machines) {
         this.jobs = jobs;
         this.machines = machines;
