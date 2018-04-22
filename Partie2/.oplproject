@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="ASCII"?><project>
+	<version>1.0</version>
+	<description>TP4_RO_UQAC</description>
+	<configs>
+		<config default="true" name="TP4Config" category="opl">
+			<ref name="tp4.mod" type="model">
+			</ref>
+			<ref name="20_5.dat" type="data">
+			</ref>
+		</config>
+	</configs>
+	
+</project>

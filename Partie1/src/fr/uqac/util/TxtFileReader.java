@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.SecurityException;
+import java.io.PrintWriter;
 import java.util.Scanner;
 
 /**
@@ -91,5 +93,53 @@ public class TxtFileReader {
         }
         
         return null;
+    }
+    
+    /*
+    * write file in a ILOG CPLEX .dat format 
+    */
+    public static void writeFile(Info data, String folderPath){
+        String path = folderPath + data.jobs + "_" + data.machines + ".dat";
+        PrintWriter pw = null;
+        try{
+            pw = new PrintWriter(path);
+        }catch(FileNotFoundException e){
+            System.out.println("file not found " + path);
+            System.exit(0);
+        }catch(SecurityException e){
+            System.out.println("security exception at " + path);
+            System.exit(0);
+        }
+        
+        pw.println("nbJobs = " + data.jobs);
+        pw.println("nbMachines = " + data.machines);
+        
+        pw.println("p = [");
+        for(int i = 0; i < data.machines; i++){
+            pw.print("[\t" + data.processingTime[i][0]);
+            for(int j = 1; j < data.jobs; j++){
+                pw.print(",\t" + data.processingTime[i][j]);
+            }
+            pw.println("],");
+        }
+        pw.println("]");
+        
+        pw.println("s = [");
+        for(int i = 0; i < data.machines; i++){
+            pw.println("["); 
+            for(int j = 0; j < data.jobs; j++){
+                pw.print("[\t" + data.RDS[i][j][0]);
+                for(int k = 1; k < data.jobs; k++){
+                    pw.print(",\t" + data.RDS[i][j][k]);
+                }
+                pw.println("],");
+            }
+            pw.println("],");
+        }
+        pw.print("]");
+        
+        
+        
+        pw.close();
     }
 }

@@ -18,12 +18,16 @@ public class Main {
      */
     public static void main(String[] args) {
         TxtFileReader tfr = new TxtFileReader();
-        Info info = tfr.readFile("C:/Users/Benjamin/Documents/Divers/Documents/Ecoles/UQAC/8INF808 - Informatique appliquée et optimisation/Devoirs/Devoir 4/I_20_5_S_1-49_1.txt");
+        Info info = tfr.readFile("C:/Users/krato/Documents/Etudes/UQAC/Cours/RO/Devoir4_CUSSET_DAGOURET_8INF808_H2018/instances/I_20_5_S_1-49_1.txt");
+        
+        //TxtFileReader.writeFile(info, "C:/Users/krato/Documents/");
+        
         
         Local loc = new Local(info, 10000);
         loc.rechercheLocale();
         
         Genetique gen = new Genetique(info, 5000, 1000, 0.1);
         gen.algorithmeGenetique();
+
     }
 }
