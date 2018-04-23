@@ -28,7 +28,8 @@
  	// jobs are processed with machine natural order (machine 1, then machine 2, ...)
  	forall(i in 1 .. nbJobs, k in 2 .. nbMachines){
  		c[k,i] - c[k - 1,i] >= p[k - 1,i]; 	
- 	} 
+ 	}
+
  	//------------------------------------------------------------------
  	
  	// non overlap within a machine
@@ -43,12 +44,13 @@
  	// set makespan to max completion time
  	forall(k in 1 .. nbMachines, i in 1 .. nbJobs){
  		makespan >= c[k,i];
- 	}	 
+ 	}	
  	
- 	// a job can be processed only by 1 machine at a time
- 	forall(k in 1 .. nbMachines, i in 1 .. nbJobs){
- 		c[k,i] >= 0; 	
- 	}
+ 	// jobs cannot be completed before associated processing time 
+ 	forall(i in 1 .. nbJobs){
+ 		c[1,i] >= p[1,i]; 	
+ 	}  
+
  }
  
  execute {

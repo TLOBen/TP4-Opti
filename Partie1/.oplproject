@@ -5,7 +5,7 @@
 		<config default="true" name="TP4Config" category="opl">
 			<ref name="tp4.mod" type="model">
 			</ref>
-			<ref name="20_5.dat" type="data">
+			<ref name="I_100_5_S_1-124_1.dat" type="data">
 			</ref>
 		</config>
 	</configs>
