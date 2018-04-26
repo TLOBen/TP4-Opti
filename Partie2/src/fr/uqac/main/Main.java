@@ -98,7 +98,7 @@ public class Main {
      * @return Le résultat
      */
     public static String tabou(Info info) {
-        Tabou tab = new Tabou();
+        Tabou tab = new Tabou(info, params.iterationTabou, 20);
         return tab.rechercheTabou();
     }
     
