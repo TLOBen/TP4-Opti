@@ -3,9 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/krato/Documents/Etudes/UQAC/Cours/RO/Devoir4_CUSSET_DAGOURET_8INF808_H2018/TP4-Opti/Partie2/src/fr/uqac/tabou/Tabou.java</file>
-            <file>file:/C:/Users/krato/Documents/Etudes/UQAC/Cours/RO/Devoir4_CUSSET_DAGOURET_8INF808_H2018/TP4-Opti/Partie2/src/fr/uqac/main/Main.java</file>
-            <file>file:/C:/Users/krato/Documents/Etudes/UQAC/Cours/RO/Devoir4_CUSSET_DAGOURET_8INF808_H2018/TP4-Opti/Partie2/src/fr/uqac/local/Local.java</file>
+            <file>file:/C:/Users/Benjamin/Documents/Divers/Documents/Ecoles/UQAC/workspace/TP4-Opti/Partie2/src/fr/uqac/util/TxtFileReader.java</file>
+            <file>file:/C:/Users/Benjamin/Documents/Divers/Documents/Ecoles/UQAC/workspace/TP4-Opti/Partie2/src/fr/uqac/util/Calcul.java</file>
+            <file>file:/C:/Users/Benjamin/Documents/Divers/Documents/Ecoles/UQAC/workspace/TP4-Opti/Partie2/src/fr/uqac/util/Solution.java</file>
+            <file>file:/C:/Users/Benjamin/Documents/Divers/Documents/Ecoles/UQAC/workspace/TP4-Opti/Partie2/src/fr/uqac/util/Info.java</file>
+            <file>file:/C:/Users/Benjamin/Documents/Divers/Documents/Ecoles/UQAC/workspace/TP4-Opti/Partie2/src/fr/uqac/util/ParamsReader.java</file>
+            <file>file:/C:/Users/Benjamin/Documents/Divers/Documents/Ecoles/UQAC/workspace/TP4-Opti/Partie2/src/fr/uqac/local/Local.java</file>
+            <file>file:/C:/Users/Benjamin/Documents/Divers/Documents/Ecoles/UQAC/workspace/TP4-Opti/Partie2/src/fr/uqac/genetique/Genetique.java</file>
+            <file>file:/C:/Users/Benjamin/Documents/Divers/Documents/Ecoles/UQAC/workspace/TP4-Opti/Partie2/src/fr/uqac/tabou/Tabou.java</file>
+            <file>file:/C:/Users/Benjamin/Documents/Divers/Documents/Ecoles/UQAC/workspace/TP4-Opti/Partie2/src/fr/uqac/main/Main.java</file>
+            <file>file:/C:/Users/Benjamin/Documents/Divers/Documents/Ecoles/UQAC/workspace/TP4-Opti/Partie2/src/fr/uqac/util/Params.java</file>
         </group>
     </open-files>
 </project-private>

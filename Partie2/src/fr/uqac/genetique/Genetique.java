@@ -34,7 +34,13 @@ public class Genetique {
         this.info = info;
         this.calcul = new Calcul(info);
         this.iterations = iterations;
-        this.nombrePopulations = nombrePopulations;
+        
+        if (nombrePopulations % 2 == 1) {
+            this.nombrePopulations = nombrePopulations + 1;
+        } else {
+            this.nombrePopulations = nombrePopulations;
+        }
+        
         this.probabiliteMutation = probabiliteMutation;
         this.population = new ArrayList();
     }
