@@ -1,0 +1,6 @@
+Recherche locale
+100
+Recherche tabou
+100
+Algorithme génétique
+1000 1000 0.1

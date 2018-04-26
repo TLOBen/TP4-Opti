@@ -15,11 +15,15 @@ public class Tabou {
     
     /**
      * Squelette de l'algorithme
+     * 
+     * @return Le résultat
      */
-    public void rechercheTabou() {
-        System.out.println("Resultat recherche Tabou");
-        System.out.println("    Meilleure solution trouvée");
-        System.out.println("    " + "TODO");
-        System.out.println("    Makespan : " + "TODO");
+    public String rechercheTabou() {
+        String resultat = "Résultat recherche Tabou\n";
+        resultat += "    Meilleure solution trouvée\n";
+        resultat += "    " + "TODO\n";
+        resultat += "    Makespan : " + "TODO\n";
+        
+        return resultat;
     }
 }

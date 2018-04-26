@@ -18,8 +18,9 @@ public class Genetique {
     private final Calcul calcul;
     private final int iterations;
     private final int nombrePopulations;
-    private final double probabiliteMutation;
+    private final float probabiliteMutation;
     private final ArrayList<Solution> population;
+    private Solution meilleureSolution;
     
     /**
      * Constrcteur
@@ -29,7 +30,7 @@ public class Genetique {
      * @param nombrePopulations La taille de la population initiale
      * @param probabiliteMutation La probabilité de mutation
      */
-    public Genetique(Info info, int iterations, int nombrePopulations, double probabiliteMutation) {
+    public Genetique(Info info, int iterations, int nombrePopulations, float probabiliteMutation) {
         this.info = info;
         this.calcul = new Calcul(info);
         this.iterations = iterations;
@@ -40,8 +41,10 @@ public class Genetique {
     
     /**
      * Squelette de l'algorithme
+     * 
+     * @return Le résultat
      */
-    public void algorithmeGenetique() {
+    public String algorithmeGenetique() {
         initialiserPopulation();
         
         for (int i=0; i < this.iterations; i++) {
@@ -51,10 +54,13 @@ public class Genetique {
         }
         
         tri();
-        System.out.println("Resultat algorithme génétique");
-        System.out.println("    Meilleure solution trouvée");
-        System.out.println("    " + this.population.get(0).ordonnancement);
-        System.out.println("    Makespan : " + this.population.get(0).makespan);
+        
+        String resultat = "Résultat algorithme génétique\n";
+        resultat += "    Meilleure solution trouvée\n";
+        resultat += "    " + this.meilleureSolution.ordonnancement + "\n";
+        resultat += "    Makespan : " + this.meilleureSolution.makespan + "\n";
+        
+        return resultat;
     }
     
     /**
@@ -71,16 +77,17 @@ public class Genetique {
      */
     private void selection() {
         tri();
-        int j;
         
-        if ((this.population.size()/2) % 2 == 0) {
-            j = this.population.size()/2;
-        } else {
-            j = 1 + this.population.size()/2;
+        int size = this.population.size();
+        for (int i=0; i < size/2; i++) {
+            this.population.remove(this.population.size() - 1);
         }
         
-        for (int i=0; i < j; i++) {
-            this.population.remove(this.population.size() - 1);
+        Random rand = new Random();
+        while (this.population.size() != size) {
+            int index = rand.nextInt(this.population.size());
+            Solution newSolution = this.population.get(index);
+            this.population.add(newSolution);
         }
     }
     
@@ -88,6 +95,8 @@ public class Genetique {
      * Croise tous les individus 2 à 2 choisis au hasard
      */
     private void croisement() {
+        tri();
+        
         ArrayList<Integer> croisement = new ArrayList();
         
         for (int i=0; i < this.population.size(); i++) {
@@ -95,10 +104,9 @@ public class Genetique {
         }
         
         Collections.shuffle(croisement);
-        int j = this.population.size()/2;
         
-        for (int i=0; i < j; i++) {
-            enfants(this.population.get(i*2), this.population.get(1+i*2));
+        for (int i=0; i < this.population.size(); i=i+2) {
+            enfants(this.population.get(croisement.get(i)), this.population.get(croisement.get(i+1)));
         }
     }
     
@@ -114,7 +122,7 @@ public class Genetique {
         Solution enfant1 = new Solution();
         Solution enfant2 = new Solution();
         
-        for (int i=0; i < 20; i++) {
+        for (int i=0; i < this.info.jobs; i++) {
             if (i < pivot) {
                 enfant1.ordonnancement.add(a.ordonnancement.get(i));
                 enfant2.ordonnancement.add(b.ordonnancement.get(i));
@@ -125,19 +133,24 @@ public class Genetique {
         }
         
         enfant1.validate();
-        enfant2.validate();
-        
         enfant1.makespan = this.calcul.calculateMakespan(enfant1.ordonnancement);
-        enfant2.makespan = this.calcul.calculateMakespan(enfant2.ordonnancement);
+        if (this.population.get(this.population.size()-1).makespan >= enfant1.makespan) {
+            this.population.set(this.population.size()-1, enfant1);
+        }
         
-        this.population.add(enfant1);
-        this.population.add(enfant2);
+        enfant2.validate();
+        enfant2.makespan = this.calcul.calculateMakespan(enfant2.ordonnancement);
+        if (this.population.get(this.population.size()-2).makespan >= enfant2.makespan) {
+            this.population.set(this.population.size()-2, enfant2);
+        }
     }
     
     /**
      * Echange le placement de deux valeurs du tableau d'ordonnancement
      */
     private void mutation() {
+        tri();
+        
         Random rng = new Random();
         
         for (int i=0; i < this.population.size(); i++) {
@@ -160,5 +173,7 @@ public class Genetique {
                 return s1.makespan - s2.makespan;
             }
         });
+        
+        this.meilleureSolution = this.population.get(0);
     }
 }

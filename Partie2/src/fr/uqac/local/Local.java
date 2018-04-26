@@ -34,49 +34,55 @@ public class Local {
     
     /**
      * Squelette de l'algorithme
+     * 
+     * @return Le résultat
      */
-    public void rechercheLocale() {
+    public String rechercheLocale() {
         this.solution = this.calcul.solutionInitiale();
         
         for (int i=0; i < this.iterations; i++) {
             chercherMeilleureSolution();
-        }
+        }        
         
-        System.out.println("Résutat recherche locale");
-        System.out.println("    Meilleure solution trouvée");
-        System.out.println("    " + this.solution.ordonnancement);
-        System.out.println("    Makespan : " + this.solution.makespan);
+        String resultat = "Résutat recherche locale\n";
+        resultat += "    Meilleure solution trouvée\n";
+        resultat += "    " + this.solution.ordonnancement + "\n";
+        resultat += "    Makespan : " + this.solution.makespan + "\n";
+        
+        return resultat;
     }
     
     /**
      * Méthode de recherche d'une meilleure solution
      */
     private void chercherMeilleureSolution() {
-        Solution nouvelleSolution = creerSolution();
+        int maxRDS = 0, jobID = 0;
         
-        if (nouvelleSolution.makespan <= this.solution.makespan) {
-            this.solution = nouvelleSolution;
-        }
-    }
-    
-    /**
-     * Créée une nouvelle solution en échangeant un job avec un autre
-     * 
-     * @return Une nouvelle solution
-     */
-    private Solution creerSolution() {
-        int indice1 = rand.nextInt(this.info.jobs);
-        int indice2 = rand.nextInt(this.info.jobs);
-        
-        while (indice1 == indice2) {
-            indice2 = rand.nextInt(this.info.jobs);
+        for (int i=0; i < this.info.jobs - 1; i++) {
+            int job1 = this.solution.ordonnancement.get(i);
+            int job2 = this.solution.ordonnancement.get(i+1);
+            
+            int RDS = 0;
+            for (int j=0; j < this.info.machines; j++) {
+                RDS += this.info.RDS[j][job1][job2];
+            }
+            
+            if (maxRDS < RDS) {
+                maxRDS = RDS;
+                jobID = i;
+            }
         }
         
-        Solution nouvelleSolution = new Solution();
-        nouvelleSolution.ordonnancement = (ArrayList<Integer>) this.solution.ordonnancement.clone();
-        Collections.swap(nouvelleSolution.ordonnancement, indice1, indice2);
-        nouvelleSolution.makespan = this.calcul.calculateMakespan(nouvelleSolution.ordonnancement);
-        
-        return nouvelleSolution;
+        ArrayList<Integer> tempSolution = (ArrayList<Integer>) this.solution.ordonnancement.clone();
+        for (int i=0; i < this.info.jobs; i++) {
+            Solution nouvelleSolution = new Solution();
+            nouvelleSolution.ordonnancement = (ArrayList<Integer>) tempSolution.clone();
+            Collections.swap(nouvelleSolution.ordonnancement, i, jobID);
+            nouvelleSolution.makespan = this.calcul.calculateMakespan(nouvelleSolution.ordonnancement);
+            
+            if (nouvelleSolution.makespan <= this.solution.makespan) {
+                this.solution = nouvelleSolution;
+            }
+        }
     }
 }
